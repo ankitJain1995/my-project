@@ -26,7 +26,7 @@ import org.foodie.pojo.ProductPojo;
  * @author AFROZ
  */
 
-public class OrderDao {
+public class OrderDAO {
 
     public static ArrayList<OrderPojo> getOrderHistoryForSeller(String companyName) throws SQLException {
         Connection conn = DBConnection.getConnection();
@@ -444,7 +444,7 @@ public class OrderDao {
             product.setCompanyId(rs.getString("company_id"));
             product.setProductId(rs.getString("product_id"));
             product.setProductName(rs.getString("product_name"));
-            product.setProductPrice(rs.getDouble("product_price"));
+            product.setProductPrice(rs.getInt("product_price"));
             //convert the blob to image : 
             // Fetch the image data as InputStream
             InputStream inputStream = rs.getBinaryStream("product_image");

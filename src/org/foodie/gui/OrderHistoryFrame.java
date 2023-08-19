@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import org.foodie.dao.OrderDao;
+import org.foodie.dao.OrderDAO;
 import org.foodie.pojo.OrderPojo;
 import org.foodie.pojo.UserCredentials;
 
@@ -188,7 +188,7 @@ public class OrderHistoryFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            boolean result = OrderDao.updateOrderReview(orderReviewMap);
+            boolean result = OrderDAO.updateOrderReview(orderReviewMap);
             if (result) {
                 JOptionPane.showMessageDialog(null, "Can't Post the Review Now!\nPlease Try Again Later", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -313,7 +313,7 @@ public class OrderHistoryFrame extends javax.swing.JFrame {
 
     private void loadDeliveredProductsDetails(String customerId) {
         try {
-            orderList = OrderDao.getDeliveredProductsByCustomerId(customerId);
+            orderList = OrderDAO.getDeliveredProductsByCustomerId(customerId);
             Object[] rows = new Object[7]; //No. of Coloums / Object Array because different return type
             DefaultTableModel model = (DefaultTableModel) jtDeliveredProductTable.getModel();
             for (OrderPojo order : orderList) {

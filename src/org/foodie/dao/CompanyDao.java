@@ -41,12 +41,12 @@ public class CompanyDao {
         PreparedStatement ps = conn.prepareStatement(qry);
         ps.setString(1, getNewId());
         ps.setString(2, seller.getCompanyName());
-        ps.setString(3, seller.getOwnerName());
-        ps.setString(4, seller.getPassword());
-        ps.setString(5, "ACTIVE");
-        ps.setString(6, seller.getEmailId());
-        ps.setString(7, seller.getSecurityKey());
-
+         ps.setString(3, seller.getEmailId());
+        ps.setString(4, seller.getOwnerName());
+        ps.setString(5, seller.getPassword());
+        ps.setString(6, seller.getSecurityKey());
+        ps.setString(7, "ACTIVE");
+    
         int result = ps.executeUpdate();
         return result > 0;
     }
@@ -92,12 +92,12 @@ public class CompanyDao {
 
     public static Map<String, String> getSellerEmailCredentialByCompanyId(String companyId) throws SQLException {
         Connection conn = DBConnection.getConnection();
-        PreparedStatement query = conn.prepareStatement("SELECT email_id,security_key FROM companies WHERE company_id = ?");
+        PreparedStatement query = conn.prepareStatement("SELECT emailid,security_key FROM companies WHERE company_id = ?");
         query.setString(1, companyId);
         ResultSet result = query.executeQuery();
         Map<String, String> emailCredentialMap = new HashMap<>();
         if (result.next()) {
-            emailCredentialMap.put("emailId", result.getString("email_id"));
+            emailCredentialMap.put("emailId", result.getString("emailid"));
             emailCredentialMap.put("securityKey", result.getString("security_key"));
         }
         return emailCredentialMap;

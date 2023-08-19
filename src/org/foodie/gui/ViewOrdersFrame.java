@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import org.foodie.dao.OrderDao;
+import org.foodie.dao.OrderDAO;
 import org.foodie.pojo.OrderPojo;
 import org.foodie.pojo.UserCredentials;
 
@@ -164,7 +164,7 @@ public class ViewOrdersFrame extends javax.swing.JFrame {
             if (String.valueOf(otp).equals(answer)) {
 
                 System.out.println("set order status as ordered.");
-                boolean result = OrderDao.confirmOrder(orderList.get(index).getOrderId());
+                boolean result = OrderDAO.confirmOrder(orderList.get(index).getOrderId());
                 if (!result) {
                     JOptionPane.showMessageDialog(this, "Can't confirm the Order Now.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -252,7 +252,7 @@ public class ViewOrdersFrame extends javax.swing.JFrame {
 
     private void loadNewOrderDetails(String staffId) {
         try {
-            orderList = OrderDao.getNewOrderForDeliveryStaff(staffId);
+            orderList = OrderDAO.getNewOrderForDeliveryStaff(staffId);
             Object[] rows = new Object[6]; //No. of Coloums / Object Array because different return type
             DefaultTableModel model = (DefaultTableModel) jtOrderList.getModel();
             for (OrderPojo order : orderList) {

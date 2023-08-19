@@ -12,7 +12,7 @@ import javax.mail.MessagingException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.foodie.dao.CompanyDao;
-import org.foodie.dao.OrderDao;
+import org.foodie.dao.OrderDAO;
 import org.foodie.dao.StaffDao;
 import org.foodie.pojo.PlaceOrderPojo;
 import org.foodie.pojo.ProductPojo;
@@ -256,7 +256,7 @@ public class OrderProductFrame extends javax.swing.JFrame {
             placeOrder.setProductId(product.getProductId());
             placeOrder.setDeliveryStaffId(deliveryStaffId);
 
-            String orderId = OrderDao.placeOrder(placeOrder);
+            String orderId = OrderDAO.placeOrder(placeOrder);
             System.out.println("product ordered : " + orderId);
             //            Receipt.generateReceipt(OrderDao.getOrderDetailsByOrderId(orderId));
             // write code for email here if result is true then only
@@ -265,7 +265,7 @@ public class OrderProductFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Could not place the order now!\nTry Again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            Receipt.generateReceipt(OrderDao.getOrderDetailsByOrderId(orderId));
+            Receipt.generateReceipt(OrderDAO.getOrderDetailsByOrderId(orderId));
             JOptionPane.showMessageDialog(this, "Order has been placed.\nYou will get the receipt on your email.", "Success", JOptionPane.INFORMATION_MESSAGE);
 
             Gmail mail = new Gmail();
@@ -393,7 +393,7 @@ public class OrderProductFrame extends javax.swing.JFrame {
 
     private void setProductDetailsByOrderId(String orderId) {
         try {
-            product = OrderDao.getProductDetailsByOrderId(orderId);
+            product = OrderDAO.getProductDetailsByOrderId(orderId);
         } catch (SQLException | IOException ex) {
             ex.printStackTrace();
         }

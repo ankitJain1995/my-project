@@ -24,7 +24,7 @@ public class AddFoodFrame extends javax.swing.JFrame {
     private ArrayList<ProductPojo> productList;
     private int viewImageIndex;
     private ProductPojo product;
-    private double price;
+    private int price;
     private JFrame showFrame;
 
     public AddFoodFrame() {
@@ -331,7 +331,7 @@ public class AddFoodFrame extends javax.swing.JFrame {
         }
 
         try {
-            price = Double.parseDouble(txtFoodPrice.getText().trim());
+            price = Integer.valueOf(txtFoodPrice.getText().trim());
         } catch (NumberFormatException nfe) {
             nfe.printStackTrace();
             JOptionPane.showMessageDialog(this, "Please Enter Numbers only.", "Error", JOptionPane.ERROR_MESSAGE);

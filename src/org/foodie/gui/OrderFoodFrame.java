@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.foodie.dao.CompanyDao;
-import org.foodie.dao.OrderDao;
+import org.foodie.dao.OrderDAO;
 import org.foodie.dao.ProductDao;
 import org.foodie.dao.StaffDao;
 import org.foodie.pojo.PlaceOrderPojo;
@@ -440,7 +440,7 @@ public class OrderFoodFrame extends javax.swing.JFrame {
                 placeOrder.setCustomerId(UserCredentials.getUserId());
                 placeOrder.setProductId(product.getProductId());
                 placeOrder.setDeliveryStaffId(deliveryStaffId);
-                boolean isItemAdded = OrderDao.addToCart(placeOrder);
+                boolean isItemAdded = OrderDAO.addToCart(placeOrder);
                 
 // add the product in the card in database
                 if (isItemAdded) {

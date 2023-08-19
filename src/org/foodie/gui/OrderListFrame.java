@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import org.foodie.dao.OrderDao;
+import org.foodie.dao.OrderDAO;
 import org.foodie.pojo.OrderPojo;
 import org.foodie.pojo.OwnerProfile;
 
@@ -245,7 +245,7 @@ public class OrderListFrame extends javax.swing.JFrame {
 
     private void loadOrderHistoryDetails(String companyId) {
         try {
-            ArrayList<OrderPojo> orderList = OrderDao.getOrderHistoryForSeller(companyId);
+            ArrayList<OrderPojo> orderList = OrderDAO.getOrderHistoryForSeller(companyId);
             Object[] rows = new Object[6]; //No. of Coloums / Object Array because different return type
             DefaultTableModel model = (DefaultTableModel) tbOrderList.getModel();
             for (OrderPojo order : orderList) {

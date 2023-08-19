@@ -269,11 +269,14 @@ public class AddDeliveryStaffFrame extends javax.swing.JFrame {
             staff.setStaffId(staffId);
             Gmail mail = new Gmail();
             mail.sendStaffDetailsTo(staff, OwnerProfile.getCompanyName(),OwnerProfile.getOwnerName());
+            System.out.println(OwnerProfile.getCompanyId());
             Map<String, String> sellerEmailCredential = CompanyDao.getSellerEmailCredentialByCompanyId(OwnerProfile.getCompanyId());
+            System.out.println("Seller Email Id "+sellerEmailCredential.get("emailId"));
+            System.out.println("Security Key "+sellerEmailCredential.get("securityKey"));
             mail.sendEmailFrom(sellerEmailCredential.get("emailId"), sellerEmailCredential.get("securityKey"));
             System.out.println("The mail sent to the staff.");
         } catch (SQLException | MessagingException ex) {
-            JOptionPane.showMessageDialog(null, "Email Id Already Exists.", "Error", JOptionPane.ERROR_MESSAGE);
+           // JOptionPane.showMessageDialog(null, "Email Id Already Exists.", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }//GEN-LAST:event_btnAddStaffActionPerformed

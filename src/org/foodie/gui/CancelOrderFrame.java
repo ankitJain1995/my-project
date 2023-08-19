@@ -12,7 +12,7 @@ import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.foodie.dao.CompanyDao;
-import org.foodie.dao.OrderDao;
+import org.foodie.dao.OrderDAO;
 import org.foodie.pojo.OrderPojo;
 import org.foodie.pojo.UserCredentials;
 import org.foodie.utility.Gmail;
@@ -196,7 +196,7 @@ public class CancelOrderFrame extends javax.swing.JFrame {
             if (String.valueOf(otp).equals(answer)) {
 
                 System.out.println("set order status as cancelled.");
-                OrderDao.cancelOrder(orderList.get(index).getOrderId());
+                OrderDAO.cancelOrder(orderList.get(index).getOrderId());
                 showFrame = new CancelOrderFrame();
                 showFrame.setVisible(true);
                 this.dispose();
@@ -300,7 +300,7 @@ public class CancelOrderFrame extends javax.swing.JFrame {
 
     private void loadOrderedProductDetails(String customerId) {
         try {
-            orderList = OrderDao.getOrderedProductsByCustomerId(customerId);
+            orderList = OrderDAO.getOrderedProductsByCustomerId(customerId);
             Object[] rows = new Object[5]; //No. of Coloums / Object Array because different return type
             DefaultTableModel model = (DefaultTableModel) jtOrderedTable.getModel();
             for (OrderPojo order : orderList) {

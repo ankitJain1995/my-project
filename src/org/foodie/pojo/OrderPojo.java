@@ -13,7 +13,7 @@ public class OrderPojo {
     private String companyEmailId;
     private String productName;
     private double productPrice;
-    private Image productImage;
+    private Image productImage;   
     private String customerName;
     private String customerPhoneNo;
     private String customerAddress;

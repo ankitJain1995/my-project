@@ -11,14 +11,14 @@ public class ProductPojo {
     private String productId;
     private String companyId;
     private String productName;
-    private double productPrice;
+    private int productPrice;
     private Image productImage;
     private String productImageType;
 
     public ProductPojo() {
     }
 
-    public ProductPojo(String productId, String companyId, String productName, double productPrice, Image productImage, String productImageType) {
+    public ProductPojo(String productId, String companyId, String productName, int productPrice, Image productImage, String productImageType) {
         this.productId = productId;
         this.companyId = companyId;
         this.productName = productName;
@@ -51,11 +51,11 @@ public class ProductPojo {
         this.productName = productName;
     }
 
-    public double getProductPrice() {
+    public int getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(double productPrice) {
+    public void setProductPrice(int productPrice) {
         this.productPrice = productPrice;
     }
 

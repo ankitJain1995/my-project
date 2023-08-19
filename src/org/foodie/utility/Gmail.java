@@ -34,9 +34,9 @@ public class Gmail {
     public void setupServerProperties()
     {
         Properties pro = System.getProperties();
-        pro.put("mail.smtp.port","587");
-        pro.put("mail.smtp.auth","true");
-        pro.put("mail.smtp.starttls.enable","true");
+        pro.put("mail.smtp.port",587);
+        pro.put("mail.smtp.auth",true);
+        pro.put("mail.smtp.starttls.enable",true);
         newSession=Session.getDefaultInstance(pro,null);
         
     }

@@ -17,7 +17,7 @@ import javax.mail.internet.AddressException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.foodie.dao.CompanyDao;
-import org.foodie.dao.OrderDao;
+import org.foodie.dao.OrderDAO;
 import org.foodie.dao.StaffDao;
 import org.foodie.pojo.OrderPojo;
 import org.foodie.pojo.UserCredentials;
@@ -230,7 +230,7 @@ public class CustomerCartFrame extends javax.swing.JFrame {
             try {
                 // Delete the Cart was clicked
                 System.out.println("delete this card. was clicked");
-                boolean isItemDeleted = OrderDao.deleteOrderCartByOrderId(orderList.get(index).getOrderId());
+                boolean isItemDeleted = OrderDAO.deleteOrderCartByOrderId(orderList.get(index).getOrderId());
                 if (isItemDeleted) {
                     showFrame = new CustomerCartFrame();
                     showFrame.setVisible(Boolean.TRUE);
@@ -289,7 +289,7 @@ public class CustomerCartFrame extends javax.swing.JFrame {
                     productPrices.add(orderCartList.getProductPrice());
                     orderCart.setCustomerAddress(orderCartList.getCustomerAddress());
                     orderCart.setCompanyEmailId(orderCartList.getCompanyEmailId());
-                    OrderDao.setPropertyByOrderId(orderCartList.getOrderId(), randomStaffDetails.get("staffId"), otp);
+                    OrderDAO.setPropertyByOrderId(orderCartList.getOrderId(), randomStaffDetails.get("staffId"), otp);
                 }
 
                 orderCart.setOrderId(orderId);
@@ -299,7 +299,7 @@ public class CustomerCartFrame extends javax.swing.JFrame {
                 orderCart.setOtp(otp);
                 Receipt.generateReceipt(orderCart, productNames, productPrices);
 
-                boolean result = OrderDao.checkOutCart(cartIds);
+                boolean result = OrderDAO.checkOutCart(cartIds);
                 if (!result) {
                     JOptionPane.showMessageDialog(this, "Could Not Check Out!\nTry Again later.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -462,7 +462,7 @@ public class CustomerCartFrame extends javax.swing.JFrame {
     private void loadCartDetailsByCustomerId(String customerId) {
         try {
             cartIds = new ArrayList<>();
-            orderList = OrderDao.getOrderCartByCustomerId(customerId);
+            orderList = OrderDAO.getOrderCartByCustomerId(customerId);
             Object[] rows = new Object[2]; //No. of Coloums / Object Array because different return type
             DefaultTableModel model = (DefaultTableModel) jtCartTable.getModel();
             for (OrderPojo order : orderList) {

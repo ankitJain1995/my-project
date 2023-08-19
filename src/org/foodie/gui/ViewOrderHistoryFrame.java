@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import org.foodie.dao.OrderDao;
+import org.foodie.dao.OrderDAO;
 import org.foodie.pojo.OrderPojo;
 import org.foodie.pojo.UserCredentials;
 
@@ -206,7 +206,7 @@ public class ViewOrderHistoryFrame extends javax.swing.JFrame {
 
     private void loadDeliveredOrderDetails(String staffId) {
         try {
-            ArrayList<OrderPojo> orderList = OrderDao.getOrderHistoryForDeliveryStaff(staffId);
+            ArrayList<OrderPojo> orderList = OrderDAO.getOrderHistoryForDeliveryStaff(staffId);
             Object[] rows = new Object[5]; //No. of Coloums / Object Array because different return type
             DefaultTableModel model = (DefaultTableModel) tbOrderList.getModel();
             for (OrderPojo order : orderList) {
